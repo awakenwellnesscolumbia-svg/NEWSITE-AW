@@ -1,0 +1,114 @@
+// ============================================================
+// AWAKEN WELLNESS — Contact Page
+// ============================================================
+
+import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import Layout from "@/components/Layout";
+import { useScrollReveal } from "@/components/SharedComponents";
+import { CLINIC } from "@/lib/siteData";
+
+function FadeUp({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
+  const ref = useScrollReveal();
+  return <div ref={ref} className="fade-up" style={{ transitionDelay: `${delay}ms` }}>{children}</div>;
+}
+
+export default function Contact() {
+  return (
+    <Layout>
+      <section className="py-20" style={{ background: "linear-gradient(135deg, oklch(0.92 0.04 308) 0%, oklch(0.93 0.04 152) 100%)" }}>
+        <div className="container max-w-3xl">
+          <div className="section-label mb-4">Contact Us</div>
+          <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600, fontSize: "clamp(2.2rem, 5vw, 3.6rem)", color: "oklch(0.20 0.012 65)", lineHeight: 1.1, marginBottom: "1.25rem" }}>
+            We're Here to Help<br /><em style={{ color: "oklch(0.44 0.13 308)" }}>Get in Touch</em>
+          </h1>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1.1rem", color: "oklch(0.38 0.008 65)", lineHeight: 1.75, maxWidth: "580px" }}>
+            Have questions about our services, insurance coverage, or whether acupuncture is right for you? We'd love to hear from you.
+          </p>
+        </div>
+      </section>
+
+      <section className="py-20" style={{ background: "oklch(1 0 0)" }}>
+        <div className="container">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14">
+            <FadeUp>
+              <div className="section-label mb-4">Clinic Information</div>
+              <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600, fontSize: "clamp(1.6rem, 3vw, 2.2rem)", color: "oklch(0.20 0.012 65)", lineHeight: 1.15, marginBottom: "1.5rem" }}>
+                Find Us in Columbia, Maryland
+              </h2>
+              <div className="flex flex-col gap-5">
+                {[
+                  { icon: <MapPin size={20} />, label: "Address", value: `${CLINIC.address}, ${CLINIC.city}, ${CLINIC.state} ${CLINIC.zip}`, href: `https://maps.google.com/?q=${encodeURIComponent(CLINIC.address + ' ' + CLINIC.city)}` },
+                  { icon: <Phone size={20} />, label: "Phone", value: CLINIC.phone, href: `tel:${CLINIC.phone}` },
+                  { icon: <Mail size={20} />, label: "Email", value: CLINIC.email, href: `mailto:${CLINIC.email}` },
+                ].map((item) => (
+                  <a key={item.label} href={item.href} target={item.label === "Address" ? "_blank" : undefined} rel="noreferrer" className="flex items-start gap-4 p-5 rounded-xl transition-all" style={{ background: "oklch(0.97 0.008 85)", border: "1px solid oklch(0.90 0.010 80)", textDecoration: "none" }}>
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: "oklch(0.92 0.04 308)", color: "oklch(0.44 0.13 308)" }}>
+                      {item.icon}
+                    </div>
+                    <div>
+                      <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", fontWeight: 600, color: "oklch(0.55 0.008 65)", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: "0.2rem" }}>{item.label}</div>
+                      <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem", color: "oklch(0.28 0.012 65)", fontWeight: 500 }}>{item.value}</div>
+                    </div>
+                  </a>
+                ))}
+
+                {/* Hours */}
+                <div className="p-5 rounded-xl" style={{ background: "oklch(0.97 0.008 85)", border: "1px solid oklch(0.90 0.010 80)" }}>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: "oklch(0.92 0.04 308)", color: "oklch(0.44 0.13 308)" }}>
+                      <Clock size={20} />
+                    </div>
+                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", fontWeight: 600, color: "oklch(0.55 0.008 65)", textTransform: "uppercase", letterSpacing: "0.06em" }}>Hours</div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-y-1.5">
+                    {Object.entries(CLINIC.hours).map(([day, hours]) => (
+                      <React.Fragment key={day}>
+                        <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", color: "oklch(0.45 0.008 65)" }}>{day}</span>
+                        <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", color: "oklch(0.28 0.012 65)", fontWeight: 500 }}>{hours}</span>
+                      </React.Fragment>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </FadeUp>
+
+            <FadeUp delay={150}>
+              <div className="section-label mb-4">Send a Message</div>
+              <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600, fontSize: "clamp(1.6rem, 3vw, 2.2rem)", color: "oklch(0.20 0.012 65)", lineHeight: 1.15, marginBottom: "1.5rem" }}>
+                We'll Respond Within One Business Day
+              </h2>
+              <form className="flex flex-col gap-4" onSubmit={(e) => e.preventDefault()}>
+                <div className="grid grid-cols-2 gap-4">
+                  {["First Name", "Last Name"].map((label) => (
+                    <div key={label}>
+                      <label style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", fontWeight: 600, color: "oklch(0.38 0.008 65)", display: "block", marginBottom: "0.4rem" }}>{label}</label>
+                      <input type="text" placeholder={label} className="w-full px-4 py-3 rounded-xl text-sm outline-none transition-all" style={{ background: "oklch(0.97 0.008 85)", border: "1px solid oklch(0.88 0.010 80)", fontFamily: "'DM Sans', sans-serif", color: "oklch(0.28 0.012 65)" }} />
+                    </div>
+                  ))}
+                </div>
+                {[
+                  { label: "Email Address", type: "email", placeholder: "your@email.com" },
+                  { label: "Phone Number", type: "tel", placeholder: "(410) 555-0000" },
+                ].map((field) => (
+                  <div key={field.label}>
+                    <label style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", fontWeight: 600, color: "oklch(0.38 0.008 65)", display: "block", marginBottom: "0.4rem" }}>{field.label}</label>
+                    <input type={field.type} placeholder={field.placeholder} className="w-full px-4 py-3 rounded-xl text-sm outline-none" style={{ background: "oklch(0.97 0.008 85)", border: "1px solid oklch(0.88 0.010 80)", fontFamily: "'DM Sans', sans-serif", color: "oklch(0.28 0.012 65)" }} />
+                  </div>
+                ))}
+                <div>
+                  <label style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", fontWeight: 600, color: "oklch(0.38 0.008 65)", display: "block", marginBottom: "0.4rem" }}>How Can We Help You?</label>
+                  <textarea rows={5} placeholder="Tell us about your health concerns and what you're hoping to address..." className="w-full px-4 py-3 rounded-xl text-sm outline-none resize-none" style={{ background: "oklch(0.97 0.008 85)", border: "1px solid oklch(0.88 0.010 80)", fontFamily: "'DM Sans', sans-serif", color: "oklch(0.28 0.012 65)" }} />
+                </div>
+                <button type="submit" className="btn-lotus w-full justify-center text-base py-4">
+                  Send Message
+                </button>
+              </form>
+            </FadeUp>
+          </div>
+        </div>
+      </section>
+    </Layout>
+  );
+}
+
+import React from "react";
