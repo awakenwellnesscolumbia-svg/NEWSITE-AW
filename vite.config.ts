@@ -156,9 +156,10 @@ export default defineConfig({
   plugins,
   resolve: {
     alias: {
+      "@/components": path.resolve(import.meta.dirname, "components"),
+      "@/lib": path.resolve(import.meta.dirname, "lib"),
+      "@/hooks": path.resolve(import.meta.dirname, "hooks"),
       "@": path.resolve(import.meta.dirname),
-      "@/components": path.resolve(import.meta.dirname),
-      "@/lib": path.resolve(import.meta.dirname),
       "@shared": path.resolve(import.meta.dirname, "shared"),
       "@assets": path.resolve(import.meta.dirname, "attached_assets"),
     },

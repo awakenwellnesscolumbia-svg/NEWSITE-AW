@@ -1,106 +1,17 @@
-// ============================================================
-// AWAKEN WELLNESS — Insurance & Pricing Page
-// ============================================================
-
-import { Link } from "wouter";
-import { CheckCircle, ArrowRight, Phone } from "lucide-react";
-import Layout from "@/components/Layout";
-import { CTABanner, useScrollReveal } from "@/components/SharedComponents";
-import { INSURANCE_LIST, CLINIC } from "@/lib/siteData";
-
-function FadeUp({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
-  const ref = useScrollReveal();
-  return <div ref={ref} className="fade-up" style={{ transitionDelay: `${delay}ms` }}>{children}</div>;
-}
-
-const PRICING = [
-  { service: "Initial Acupuncture Consultation & Treatment", duration: "75–90 min", price: "$145" },
-  { service: "Follow-Up Acupuncture Treatment", duration: "50–60 min", price: "$95" },
-  { service: "Acupuncture Package (6 sessions)", duration: "", price: "$510 (save $60)" },
-  { service: "Initial Massage Therapy Session", duration: "60 min", price: "$110" },
-  { service: "Follow-Up Massage Therapy", duration: "60 min", price: "$95" },
-  { service: "Deep Tissue / Therapeutic Massage", duration: "90 min", price: "$135" },
-  { service: "Initial Nutrition Consultation", duration: "60 min", price: "$125" },
-  { service: "Follow-Up Nutrition Session", duration: "45 min", price: "$85" },
-  { service: "Acupuncture + Massage Combo", duration: "90 min", price: "$165" },
-];
-
-export default function Insurance() {
-  return (
-    <Layout>
-      <section className="py-20" style={{ background: "linear-gradient(135deg, oklch(0.92 0.04 308) 0%, oklch(0.93 0.04 152) 100%)" }}>
-        <div className="container max-w-3xl">
-          <div className="section-label mb-4">Insurance & Pricing</div>
-          <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600, fontSize: "clamp(2.2rem, 5vw, 3.6rem)", color: "oklch(0.20 0.012 65)", lineHeight: 1.1, marginBottom: "1.25rem" }}>
-            Transparent Pricing,<br /><em style={{ color: "oklch(0.44 0.13 308)" }}>Most Insurance Accepted</em>
-          </h1>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1.1rem", color: "oklch(0.38 0.008 65)", lineHeight: 1.75, maxWidth: "580px" }}>
-            We believe healing should be accessible. We accept most major insurance plans and will verify your benefits before your first appointment.
-          </p>
-        </div>
-      </section>
-
-      <section className="py-20" style={{ background: "oklch(1 0 0)" }}>
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14">
-            <FadeUp>
-              <div className="section-label mb-4">Insurance We Accept</div>
-              <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600, fontSize: "clamp(1.6rem, 3vw, 2.2rem)", color: "oklch(0.20 0.012 65)", lineHeight: 1.15, marginBottom: "1rem" }}>
-                We Accept Most Major Plans
-              </h2>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", color: "oklch(0.42 0.008 65)", lineHeight: 1.75, marginBottom: "1.5rem" }}>
-                Coverage for acupuncture has expanded significantly in recent years. Many plans now cover acupuncture for chronic lower back pain, and some cover additional conditions. Our team will verify your specific benefits before your first visit.
-              </p>
-              <div className="grid grid-cols-1 gap-2 mb-6">
-                {INSURANCE_LIST.map((ins) => (
-                  <div key={ins} className="flex items-center gap-3 p-3 rounded-xl" style={{ background: "oklch(0.97 0.008 85)", border: "1px solid oklch(0.90 0.010 80)" }}>
-                    <CheckCircle size={16} style={{ color: "oklch(0.48 0.10 152)", flexShrink: 0 }} />
-                    <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem", color: "oklch(0.35 0.008 65)", fontWeight: 500 }}>{ins}</span>
-                  </div>
-                ))}
-              </div>
-              <div className="p-5 rounded-xl" style={{ background: "oklch(0.92 0.04 308)", border: "1px solid oklch(0.84 0.07 298)" }}>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem", color: "oklch(0.30 0.012 65)", lineHeight: 1.65 }}>
-                  <strong>Not sure if you're covered?</strong> Call us at <a href={`tel:${CLINIC.phone}`} style={{ color: "oklch(0.44 0.13 308)", fontWeight: 600 }}>{CLINIC.phone}</a> and we'll verify your benefits at no charge before your first appointment.
-                </p>
-              </div>
-            </FadeUp>
-
-            <FadeUp delay={150}>
-              <div className="section-label mb-4">Self-Pay Pricing</div>
-              <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600, fontSize: "clamp(1.6rem, 3vw, 2.2rem)", color: "oklch(0.20 0.012 65)", lineHeight: 1.15, marginBottom: "1rem" }}>
-                Transparent, Competitive Rates
-              </h2>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", color: "oklch(0.42 0.008 65)", lineHeight: 1.75, marginBottom: "1.5rem" }}>
-                For patients without insurance coverage, we offer competitive self-pay rates and package discounts to make consistent care affordable.
-              </p>
-              <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid oklch(0.88 0.010 80)" }}>
-                <table className="w-full">
-                  <thead>
-                    <tr style={{ background: "oklch(0.97 0.008 85)" }}>
-                      <th style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem", fontWeight: 600, color: "oklch(0.40 0.008 65)", padding: "0.75rem 1rem", textAlign: "left", textTransform: "uppercase", letterSpacing: "0.05em" }}>Service</th>
-                      <th style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.8rem", fontWeight: 600, color: "oklch(0.40 0.008 65)", padding: "0.75rem 1rem", textAlign: "right", textTransform: "uppercase", letterSpacing: "0.05em" }}>Rate</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {PRICING.map((row, i) => (
-                      <tr key={row.service} style={{ borderTop: "1px solid oklch(0.90 0.010 80)", background: i % 2 === 0 ? "oklch(1 0 0)" : "oklch(0.99 0.003 85)" }}>
-                        <td style={{ padding: "0.875rem 1rem" }}>
-                          <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", color: "oklch(0.28 0.012 65)", fontWeight: 500 }}>{row.service}</div>
-                          {row.duration && <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: "oklch(0.55 0.008 65)" }}>{row.duration}</div>}
-                        </td>
-                        <td style={{ padding: "0.875rem 1rem", textAlign: "right", fontFamily: "'Cormorant Garamond', serif", fontWeight: 600, fontSize: "1.05rem", color: "oklch(0.44 0.13 308)", whiteSpace: "nowrap" }}>{row.price}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </FadeUp>
-          </div>
-        </div>
-      </section>
-
-      <CTABanner title="Ready to Get Started?" subtitle="Book your first appointment or call us to verify your insurance benefits." primaryLabel="Book Appointment" secondaryLabel="Call to Verify Insurance" />
-    </Layout>
-  );
-}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Awaken Wellness | Acupuncture Columbia MD</title>
+    <meta name="description" content="Awaken Wellness offers acupuncture, massage therapy, and nutritional counseling in Columbia, Maryland. We treat chronic pain, anxiety, digestive issues, and more." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/entry-client.tsx"></script>
+  </body>
+</html>

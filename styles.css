@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+/* ============================================================
+   AWAKEN WELLNESS — Global Styles
+   ============================================================ */
+
+@theme inline {
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+}
+
+/* ── Base Styles ────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: oklch(0.28 0.012 65);
+  background: oklch(1 0 0);
+  line-height: 1.6;
+}
+
+/* ── Container ──────────────────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* ── Section Label ──────────────────────────────────────────── */
+.section-label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: oklch(0.44 0.13 308);
+}
+
+/* ── Buttons ────────────────────────────────────────────────── */
+.btn-lotus {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  border-radius: 9999px;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  background: oklch(0.44 0.13 308);
+  color: oklch(0.97 0.005 85);
+  border: none;
+  cursor: pointer;
+}
+
+.btn-lotus:hover {
+  background: oklch(0.38 0.14 308);
+  transform: translateY(-1px);
+}
+
+.btn-sage {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  border-radius: 9999px;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  background: transparent;
+  color: oklch(0.44 0.13 308);
+  border: 1.5px solid oklch(0.44 0.13 308);
+  cursor: pointer;
+}
+
+.btn-sage:hover {
+  background: oklch(0.44 0.13 308 / 0.08);
+}
+
+/* ── Fade Animation ─────────────────────────────────────────── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Typography Helpers ─────────────────────────────────────── */
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.15;
+  color: oklch(0.20 0.012 65);
+}
+
+/* ── Links ──────────────────────────────────────────────────── */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ── Selection ──────────────────────────────────────────────── */
+::selection {
+  background: oklch(0.44 0.13 308 / 0.2);
+  color: oklch(0.20 0.012 65);
+}
